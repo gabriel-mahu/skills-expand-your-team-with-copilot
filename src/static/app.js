@@ -1,4 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Theme toggle elements
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+
+  // Initialize theme from localStorage or default to light
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      themeIcon.textContent = "☀️";
+    } else {
+      document.body.classList.remove("dark-mode");
+      themeIcon.textContent = "🌙";
+    }
+  }
+
+  // Toggle theme
+  function toggleTheme() {
+    const isDarkMode = document.body.classList.toggle("dark-mode");
+    if (isDarkMode) {
+      localStorage.setItem("theme", "dark");
+      themeIcon.textContent = "☀️";
+    } else {
+      localStorage.setItem("theme", "light");
+      themeIcon.textContent = "🌙";
+    }
+  }
+
+  // Event listener for theme toggle button
+  themeToggle.addEventListener("click", toggleTheme);
+
+  // Initialize theme on page load
+  initializeTheme();
+
   // DOM elements
   const activitiesList = document.getElementById("activities-list");
   const messageDiv = document.getElementById("message");
